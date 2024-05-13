@@ -9,15 +9,15 @@ class GeneroMusical(models.Model):
 class Musico(models.Model):
     nombre = models.CharField(max_length=255)
     instrumento = models.CharField(max_length=100)
-    generos = models.ManyToManyField(GeneroMusical)
+    genero_primario = models.ForeignKey(GeneroMusical, on_delete=models.SET_NULL, null=True, related_name='musico_genero_primario')
+    genero_secundario = models.ForeignKey(GeneroMusical, on_delete=models.SET_NULL, null=True, blank=True, related_name='musico_genero_secundario')
 
     def __str__(self):
         return self.nombre
 
 class Banda(models.Model):
     nombre = models.CharField(max_length=255)
-    generos = models.ManyToManyField(GeneroMusical)
-    integrantes = models.ManyToManyField(Musico, through='Pertenece')
+    genero = models.ForeignKey(GeneroMusical, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.nombre
@@ -36,3 +36,4 @@ class SolicitudUnirseBanda(models.Model):
 
     def __str__(self):
         return f'Solicitud de {self.musico.nombre} a {self.banda.nombre}'
+
