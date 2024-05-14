@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Lista de Músicos</h1>
+    <ul>
+        {% for musico in musicos %}
+            <li>{{ musico.nombre }}</li>
+            <ul>
+                <li>Instrumento: {{ musico.instrumento }}</li>
+                <li>Género Primario: {{ musico.genero_primario }}</li>
+                <li>Género Secundario: {{ musico.genero_secundario }}</li>
+            </ul>
+        {% endfor %}
+    </ul>
+{% endblock %}
