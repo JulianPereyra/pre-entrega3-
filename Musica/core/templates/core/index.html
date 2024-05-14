@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Últimos músicos agregados:</h2>
+    <ul>
+        {% for musico in ultimos_musicos %}
+            <li>{{ musico.nombre }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Bandas más populares:</h2>
+    <ul>
+        {% for banda in bandas_populares %}
+            <li>{{ banda.nombre }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

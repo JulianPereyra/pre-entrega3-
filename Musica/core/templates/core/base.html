@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Sitio Web de Música{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Mi Sitio Web de Música</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'core:index' %}">Inicio</a></li>
+            <!-- Agrega más enlaces de navegación si es necesario -->
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        Julian Pereyra 2024
+    </footer>
+</body>
+</html>

@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Musica.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'core/templates/core', BASE_DIR / 'Integrantes/templates/Integrantes'],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'Musica.wsgi.application'
 
