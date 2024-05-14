@@ -1,7 +1,7 @@
 from django.db import models
 
 class GeneroMusical(models.Model):
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.nombre
@@ -16,7 +16,7 @@ class Musico(models.Model):
         return self.nombre
 
 class Banda(models.Model):
-    nombre = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=255, unique= True)
     genero = models.ForeignKey(GeneroMusical, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
