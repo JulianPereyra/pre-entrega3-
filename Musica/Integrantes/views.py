@@ -20,3 +20,16 @@ def lista_generos(request):
     generos = GeneroMusical.objects.all()
     return render(request, 'integrantes/lista_generos.html', {'generos': generos})
 
+def eliminar_musico(request, musico_id):
+    Musico.objects.filter(pk=musico_id).delete()
+    return redirect('Integrantes:lista_musicos')
+
+def agregar_musico(request):
+    if request.method == 'POST':
+        form = MusicoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('Integrantes:lista_musicos')
+    else:
+        form = MusicoForm()
+    return render(request, 'integrantes/agregar_musico.html', {'form': form})

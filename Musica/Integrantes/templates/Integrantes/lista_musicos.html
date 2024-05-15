@@ -4,12 +4,21 @@
     <h1>Lista de Músicos</h1>
     <ul>
         {% for musico in musicos %}
-            <li>{{ musico.nombre }}</li>
-            <ul>
-                <li>Instrumento: {{ musico.instrumento }}</li>
-                <li>Género Primario: {{ musico.genero_primario }}</li>
-                <li>Género Secundario: {{ musico.genero_secundario }}</li>
-            </ul>
+            <li>{{ musico.nombre }} - {{ musico.instrumento }}</li>
+            <form method="post" action="{% url 'Integrantes:eliminar_musico' musico.id %}">
+                {% csrf_token %}
+                <button type="submit">Eliminar</button>
+            </form>
         {% endfor %}
     </ul>
+
+    <h2>Agregar Nuevo Músico</h2>
+    <form method="post" action="{% url 'Integrantes:agregar_musico' %}">
+        {% csrf_token %}
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        <label for="instrumento">Instrumento:</label>
+        <input type="text" name="instrumento" required>
+        <button type="submit">Agregar</button>
+    </form>
 {% endblock %}
