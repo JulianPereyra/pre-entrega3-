@@ -1,6 +1,7 @@
 from . import models
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Musico, Banda, GeneroMusical
+from .forms import MusicoForm
 
 def pagina_principal(request):
     musicos = Musico.objects.all()
@@ -28,8 +29,10 @@ def agregar_musico(request):
     if request.method == 'POST':
         form = MusicoForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.save() 
             return redirect('Integrantes:lista_musicos')
     else:
         form = MusicoForm()
-    return render(request, 'integrantes/agregar_musico.html', {'form': form})
+    return render(request, 'integrantes/agregar_musico.html', {'form': form})     
+
+
