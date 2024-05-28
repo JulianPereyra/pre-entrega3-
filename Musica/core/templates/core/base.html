@@ -1,62 +1,129 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Mi Sitio Web de Música{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Estilos generales */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #1e1e1e;
+            color: #f4f4f4;
         }
 
         header {
-            background-color: #333;
-            color: white;
+            background-color: #111;
+            color: #f4f4f4;
+            padding: 20px 0;
             text-align: center;
-            padding: 10px 0;
+            border-bottom: 3px solid #555;
         }
 
         nav {
-            background-color: #666;
-            padding: 10px 0;
+            background-color: #222;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         nav ul {
-            list-style-type: none;
-            margin: 0;
+            list-style: none;
             padding: 0;
-            text-align: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
         }
 
         nav ul li {
-            display: inline;
-            margin-right: 20px;
+            margin: 0 15px;
         }
 
         nav ul li a {
             text-decoration: none;
-            color: white;
+            color: #f4f4f4;
             padding: 10px 20px;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         nav ul li a:hover {
-            background-color: #888;
+            background-color: #555;
+            color: #fff;
         }
 
         main {
             padding: 20px;
+            background-color: #2b2b2b;
+            min-height: 80vh;
         }
 
         footer {
-            background-color: #333;
-            color: white;
+            background-color: #111;
+            color: #f4f4f4;
             text-align: center;
             padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            border-top: 3px solid #555;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #ff6f61;
+        }
+
+        button {
+            background-color: #ff6f61;
+            color: #f4f4f4;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e55b50;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #f4f4f4;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px #ff6f61;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            color: #ccc;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-error {
+            color: #ff6f61;
         }
     </style>
 </head>
@@ -69,15 +136,22 @@
             <li><a href="{% url 'Integrantes:pagina_principal' %}">Página Principal</a></li>
             <li><a href="{% url 'Integrantes:lista_bandas' %}">Lista de Bandas</a></li>
             <li><a href="{% url 'Integrantes:lista_musicos' %}">Lista de Músicos</a></li>
+            <li><a href="{% url 'Integrantes:solicitud_unirse_banda' %}">Solicitud a unirse a Banda</a></li>
+            <li><a href="{% url 'core:about_me' %}">About Me</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'core:logout' %}">Salir ({{ user.username }})</a></li>
+            {% else %}
+                <li><a href="{% url 'core:login' %}">Ingresar</a></li>
+                <li><a href="{% url 'core:register' %}">Crear Cuenta</a></li>
+            {% endif %}
         </ul>
     </nav>
-
-    <main>
+    <main class="container">
         {% block content %}{% endblock %}
     </main>
-
     <footer>
         Julian Pereyra 2024
     </footer>
 </body>
 </html>
+

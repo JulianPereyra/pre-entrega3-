@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Solicitud a Unirse a Banda{% endblock %}
+
+{% block content %}
+<h2>Solicitud a Unirse a Banda</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar Solicitud</button>
+</form>
+{% endblock %}
