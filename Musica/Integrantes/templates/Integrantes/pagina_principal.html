@@ -1,25 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Página Principal</h1>
-    <h2>Lista de Músicos</h2>
-    <ul>
+<div class="container">
+    <div class="datetime" id="datetime"></div>
+    <h2>Bienvenido a Mi Sitio Web de Música</h2>
+
+    <form method="get" action="{% url 'Integrantes:buscar' %}">
+        <div class="form-group">
+            <input type="text" name="q" class="form-control" placeholder="Buscar músicos o bandas...">
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    <h3>Lista de Músicos</h3>
+    <ul class="list-group">
         {% for musico in musicos %}
-            <li>{{ musico.nombre }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ musico.nombre }}
+                <a href="{% url 'Integrantes:detalles_musico' musico.id %}" class="btn btn-primary btn-sm">Detalles</a>
+            </li>
         {% endfor %}
     </ul>
 
-    <h2>Lista de Bandas</h2>
-    <ul>
+    <h3>Lista de Bandas</h3>
+    <ul class="list-group">
         {% for banda in bandas %}
-            <li>{{ banda.nombre }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ banda.nombre }}
+                <a href="{% url 'Integrantes:detalles_banda' banda.id %}" class="btn btn-primary btn-sm">Detalles</a>
+            </li>
         {% endfor %}
     </ul>
-
-    <h2>Lista de Géneros Musicales</h2>
-    <ul>
-        {% for genero in generos %}
-            <li>{{ genero.nombre }}</li>
-        {% endfor %}
-    </ul>
+</div>
+<script>
+    function updateDateTime() {
+        var now = new Date();
+        var dateTime = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        document.getElementById('datetime').innerText = dateTime;
+    }
+    setInterval(updateDateTime, 1000);
+</script>
 {% endblock %}
+
+

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Resultados de Búsqueda para "{{ query }}"</h2>
+    
+    <h3>Músicos</h3>
+    <div class="row">
+        {% for musico in resultados_musicos %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">{{ musico.nombre }}</div>
+                    <div class="card-body">
+                        <p>Instrumento: {{ musico.instrumento }}</p>
+                        <a href="{% url 'Integrantes:detalles_musico' musico.id %}" class="btn btn-primary">Detalles</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <h3>Bandas</h3>
+    <div class="row">
+        {% for banda in resultados_bandas %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header">{{ banda.nombre }}</div>
+                    <div class="card-body">
+                        <p>Género: {{ banda.genero }}</p>
+                        <a href="{% url 'Integrantes:detalles_banda' banda.id %}" class="btn btn-primary">Detalles</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

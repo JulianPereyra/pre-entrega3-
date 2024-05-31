@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Detalles de la Banda</h2>
+    <div class="card">
+        <div class="card-header">{{ banda.nombre }}</div>
+        <div class="card-body">
+            <p>Género: {{ banda.genero }}</p>
+            <p>Fecha de Creación: {{ banda.fecha_creacion }}</p>
+        </div>
+    </div>
+    <a href="{% url 'Integrantes:pagina_principal' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}

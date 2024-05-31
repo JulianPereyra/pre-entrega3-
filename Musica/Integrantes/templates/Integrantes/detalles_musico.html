@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Detalles del Músico</h2>
+    <div class="card">
+        <div class="card-header">{{ musico.nombre }}</div>
+        <div class="card-body">
+            <p>Instrumento: {{ musico.instrumento }}</p>
+            <p>Género Primario: {{ musico.genero_primario }}</p>
+            <p>Género Secundario: {{ musico.genero_secundario }}</p>
+            <p>Fecha de Creación: {{ musico.fecha_creacion }}</p>
+        </div>
+    </div>
+    <a href="{% url 'Integrantes:pagina_principal' %}" class="btn btn-secondary mt-3">Volver</a>
+</div>
+{% endblock %}
+

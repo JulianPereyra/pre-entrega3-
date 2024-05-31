@@ -1,10 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container">
     <h1>Lista de Bandas</h1>
-    <ul>
+    <ul class="list-group mb-4">
         {% for banda in bandas %}
-            <li>{{ banda.nombre }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ banda.nombre }} - Géneros: {{ banda.generos }} - Buscan: {{ banda.instrumentos_buscados }}
+                <form method="post" action="{% url 'Integrantes:eliminar_banda' banda.id %}" class="ml-3">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </li>
         {% endfor %}
     </ul>
+
+    <h2>Agregar Nueva Banda</h2>
+    <form method="post" action="{% url 'Integrantes:agregar_banda' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="generos">Géneros:</label>
+            <input type="text" name="generos" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="instrumentos_buscados">Instrumentos Buscados:</label>
+            <input type="text" name="instrumentos_buscados" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
 {% endblock %}
+

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class GeneroMusical(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
@@ -16,9 +17,10 @@ class Musico(models.Model):
         return self.nombre
 
 class Banda(models.Model):
-    nombre = models.CharField(max_length=255, unique= True)
-    genero = models.ForeignKey(GeneroMusical, on_delete=models.SET_NULL, null=True, blank=True)
-
+    nombre = models.CharField(max_length=100)
+    generos = models.CharField(max_length=200, default='Desconocido') 
+    instrumentos_buscados = models.CharField(max_length=200, default='Desconocido')  
+    fecha_creacion = models.DateTimeField(default=timezone.now)  
     def __str__(self):
         return self.nombre
 
